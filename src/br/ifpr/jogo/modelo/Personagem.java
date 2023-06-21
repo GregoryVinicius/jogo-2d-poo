@@ -3,6 +3,7 @@ package br.ifpr.jogo.modelo;
 import java.awt.Image;
 import java.awt.RenderingHints.Key;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 
@@ -15,6 +16,7 @@ public class Personagem {
     private int larguraImagem;
     private int alturaImagem;
     private int velocidadeDeDeslocamento;
+    private ArrayList<Tiro> tiros;
 
     private static final int POSICAO_INICIAL_EM_X = 100;
     private static final int POSICAO_INICIAL_EM_Y = 100;
@@ -23,10 +25,11 @@ public class Personagem {
         this.posicaoEmX = POSICAO_INICIAL_EM_X;
         this.posicaoEmY = POSICAO_INICIAL_EM_Y;
         this.velocidadeDeDeslocamento = velocidadeDeDeslocamento;
+        this.tiros = new ArrayList<Tiro>();
     }
 
     public void carregar(){
-        ImageIcon carregando = new ImageIcon("recursos\\nave.jpg");
+        ImageIcon carregando = new ImageIcon("recursos\\nave.png");
         this.imagem = carregando.getImage();
         this.larguraImagem = this.imagem.getWidth(null);
         this.alturaImagem = this.imagem.getHeight(null);
@@ -35,6 +38,13 @@ public class Personagem {
     public void atualizar(){
         this.posicaoEmX = this.posicaoEmX + this.deslocamentoEmX;
         this.posicaoEmY = this.posicaoEmY + this.deslocamentoEmY;
+    }
+
+    public void atirar(){
+        int frenteDaNave = this.posicaoEmX + this.larguraImagem;
+        int mioDaNave = this.posicaoEmY = (this.larguraImagem / 2);
+        Tiro tiro = new Tiro(frenteDaNave, mioDaNave);
+        this.tiros.add(tiro);
     }
 
     public void mover(KeyEvent tecla){
@@ -151,6 +161,21 @@ public class Personagem {
 
     public void setAlturaImagem(int alturaImagem) {
         this.alturaImagem = alturaImagem;
+    }
+
+    public ArrayList<Tiro> getTiros() {
+        return null;
+    }
+
+    public int getVelocidadeDeDeslocamento() {
+        return this.velocidadeDeDeslocamento;
+    }
+
+    public void setVelocidadeDeDeslocamento(int velocidadeDeDeslocamento) {
+        this.velocidadeDeDeslocamento = velocidadeDeDeslocamento;
+    }
+    public void setTiros(ArrayList<Tiro> tiros) {
+        this.tiros = tiros;
     }
 
 }

@@ -9,7 +9,7 @@ public class Principal extends JFrame{
         Fase fase = new Fase();
         super.add(fase);
         setVisible(true);
-        setSize(1920, 1080);
+        setSize(768, 768);
         setTitle("Jogo bom demaizi");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
