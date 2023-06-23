@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+//import java.util.ArrayList.iterator;
 
 public class Fase extends JPanel implements KeyListener, ActionListener{
     private Image fundo;
@@ -31,6 +32,9 @@ public class Fase extends JPanel implements KeyListener, ActionListener{
         this.personagem.carregar();
         this.addKeyListener(this);
 
+        ArrayList<Tiro> tiros = personagem.getTiros();
+        tiros.carregar();
+
         this.timer = new Timer(DELAY, this);
         this.timer.start();
     }
@@ -40,11 +44,11 @@ public class Fase extends JPanel implements KeyListener, ActionListener{
         graficos.drawImage(this.fundo , 0, 0, null);
         graficos.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), personagem.getPosicaoEmY(), this);
         
-        ArrayList<Tiro> tiros = personagem.getTiros();
+        
         
         for(Tiro tiro : tiros){
-            tiro.carregar();
-            graficos.drawImage(tiro.getImagem(), tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), this);
+            
+            graficos.drawImage(tiro.getImagem(), personagem.getPosicaoEmX(), personagem.getPosicaoEmY(), this);
         }
         g.dispose();
         
