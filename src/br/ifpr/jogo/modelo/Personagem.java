@@ -4,7 +4,6 @@ import java.awt.Image;
 import java.awt.RenderingHints.Key;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 
 public class Personagem {
@@ -18,13 +17,13 @@ public class Personagem {
     private int velocidadeDeDeslocamento;
     private ArrayList<Tiro> tiros;
 
+    private static final int DESLOCAMENTO = 3;
     private static final int POSICAO_INICIAL_EM_X = 100;
     private static final int POSICAO_INICIAL_EM_Y = 100;
 
     public Personagem(int velocidadeDeDeslocamento){
         this.posicaoEmX = POSICAO_INICIAL_EM_X;
         this.posicaoEmY = POSICAO_INICIAL_EM_Y;
-        this.velocidadeDeDeslocamento = velocidadeDeDeslocamento;
         this.tiros = new ArrayList<Tiro>();
     }
 
@@ -42,31 +41,31 @@ public class Personagem {
 
     public void atirar(){
         int frenteDaNave = this.posicaoEmX + this.larguraImagem;
-        int mioDaNave = this.posicaoEmY + (this.larguraImagem / 2);
-        Tiro tiro = new Tiro(frenteDaNave, mioDaNave);
+        int meioDaNave = this.posicaoEmY + (this.larguraImagem / 2);
+        Tiro tiro = new Tiro(frenteDaNave, meioDaNave);
         this.tiros.add(tiro);
     }
 
-    public void mover(KeyEvent tecla){
+    public void mover(KeyEvent tecla) {
         int codigo = tecla.getKeyCode();
-        switch(codigo){
+        switch (codigo) {
             case KeyEvent.VK_UP:
-                this.deslocamentoEmY = -velocidadeDeDeslocamento;
-            break;
+                this.deslocamentoEmY = -DESLOCAMENTO;
+                break;
             case KeyEvent.VK_DOWN:
-                this.deslocamentoEmY = velocidadeDeDeslocamento;
-            break;
+                this.deslocamentoEmY = DESLOCAMENTO;
+                break;
             case KeyEvent.VK_LEFT:
-                this.deslocamentoEmX = -velocidadeDeDeslocamento;
-            break;
+                this.deslocamentoEmX = -DESLOCAMENTO;
+                break;
             case KeyEvent.VK_RIGHT:
-                this.deslocamentoEmX = velocidadeDeDeslocamento;
-            break;
+                this.deslocamentoEmX = DESLOCAMENTO;
+                break;
             default:
                 break;
-        }
     }
-
+}
+    
     public void moverSetinha(KeyEvent tecla) {
         int codigo = tecla.getKeyCode();
         switch (codigo) {
@@ -164,7 +163,7 @@ public class Personagem {
     }
 
     public ArrayList<Tiro> getTiros() {
-        return null;
+        return this.tiros;
     }
 
     public int getVelocidadeDeDeslocamento() {
