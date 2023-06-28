@@ -8,7 +8,7 @@ public class Tiro {
     private Image imagem;
     private int larguraImagem;
     private int alturaImagem;
-    private static final int VELOCIDADE = 2;
+    private static final int VELOCIDADE = 5;
 
     public Tiro(int posicaoPersonagemEmX, int posicaoPersonagemEmY){
         this.posicaoEmX = posicaoPersonagemEmX;

@@ -20,7 +20,7 @@ public class Fase extends JPanel implements KeyListener, ActionListener{
     
     private static final int DELAY = 5;
     private static final int VELOCIDA_DE_DESLOCAMENTO = 3;
-    private static final int LARGURA_DA_JANELA = 938;
+    private static final int LARGURA_DA_JANELA = 1920;
 
     public Fase(){
         this.setFocusable(true);
@@ -79,11 +79,11 @@ public class Fase extends JPanel implements KeyListener, ActionListener{
         
         ArrayList<Tiro> tiros = personagem.getTiros();
 
-        for(Tiro tiro : tiros){
-            if(tiro.getPosicaoEmX() > LARGURA_DA_JANELA){
-                tiros.remove(tiro);
+        for(int i = 0; i < tiros.size(); i++){
+            if(tiros.get(i).getPosicaoEmX() > LARGURA_DA_JANELA){
+                tiros.remove(i);
             }else{
-                tiro.atualizar();
+                tiros.get(i).atualizar();
             }
         }
         repaint();
