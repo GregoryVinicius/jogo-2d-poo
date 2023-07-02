@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-//import java.util.ArrayList.iterator;
 
 public class Fase extends JPanel implements KeyListener, ActionListener{
     private Image fundo;

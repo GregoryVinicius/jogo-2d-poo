@@ -28,7 +28,7 @@ public class Personagem {
     }
 
     public void carregar(){
-        ImageIcon carregando = new ImageIcon("recursos\\nave.png");
+        ImageIcon carregando = new ImageIcon("recursos\\img6439eee2622081.png");
         this.imagem = carregando.getImage();
         this.larguraImagem = this.imagem.getWidth(null);
         this.alturaImagem = this.imagem.getHeight(null);
@@ -40,8 +40,8 @@ public class Personagem {
     }
 
     public void atirar(){
-        int frenteDaNave = this.posicaoEmX + this.larguraImagem;
-        int meioDaNave = this.posicaoEmY + (this.larguraImagem / 2);
+        int frenteDaNave = this.posicaoEmX + this.larguraImagem - 20;
+        int meioDaNave = this.posicaoEmY + (this.larguraImagem / 2) - 24;
         Tiro tiro = new Tiro(frenteDaNave, meioDaNave);
         this.tiros.add(tiro);
     }
