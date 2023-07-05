@@ -3,13 +3,17 @@ package br.ifpr.jogo.modelo;
 import java.awt.Image;
 import java.awt.Rectangle;
 
-public class ElementoGrafico {
+public abstract class ElementoGrafico {
     protected int posicaoEmX;
     protected int posicaoEmY;
     protected Image imagem;
     protected int larguraImagem;
     protected int alturaImagem;
     private boolean ehVisivel = true;
+
+    public abstract void carregar();
+
+    public abstract void atualizar();
 
     public boolean isEhVisivel() {
         return this.ehVisivel;

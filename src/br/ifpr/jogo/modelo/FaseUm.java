@@ -121,6 +121,7 @@ public class FaseUm extends Fase {
             else
                 inimigo.atualizar();
         }
+        this.verificarColisoes();
         repaint();
     }
 
