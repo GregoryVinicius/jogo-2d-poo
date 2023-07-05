@@ -10,7 +10,7 @@ public class Principal extends JFrame{
         super.add(fase);
         setVisible(true);
         setSize(1920, 1080);
-        setTitle("Jogo bom demaizi");
+        setTitle("Jogo Bonzão");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }

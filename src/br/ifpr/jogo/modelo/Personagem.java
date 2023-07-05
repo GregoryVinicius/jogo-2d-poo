@@ -1,19 +1,15 @@
 package br.ifpr.jogo.modelo;
 
 import java.awt.Image;
-import java.awt.RenderingHints.Key;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+
+import javax.management.Descriptor;
 import javax.swing.ImageIcon;
 
-public class Personagem {
-    private int posicaoEmX;
-    private int posicaoEmY;
+public class Personagem extends ElementoGrafico{
     private int deslocamentoEmX;
     private int deslocamentoEmY;
-    private Image imagem;
-    private int larguraImagem;
-    private int alturaImagem;
     private int velocidadeDeDeslocamento;
     private ArrayList<Tiro> tiros;
 
@@ -22,26 +18,26 @@ public class Personagem {
     private static final int POSICAO_INICIAL_EM_Y = 100;
 
     public Personagem(int velocidadeDeDeslocamento){
-        this.posicaoEmX = POSICAO_INICIAL_EM_X;
-        this.posicaoEmY = POSICAO_INICIAL_EM_Y;
+        setPosicaoEmX(POSICAO_INICIAL_EM_X);
+        setPosicaoEmY(POSICAO_INICIAL_EM_Y);
         this.tiros = new ArrayList<Tiro>();
     }
 
     public void carregar(){
-        ImageIcon carregando = new ImageIcon("recursos\\img6439eee2622081.png");
-        this.imagem = carregando.getImage();
+        ImageIcon carregando = new ImageIcon("recursos\\personagem.png");
+        super.imagem = carregando.getImage();
         this.larguraImagem = this.imagem.getWidth(null);
         this.alturaImagem = this.imagem.getHeight(null);
     }
 
     public void atualizar(){
-        this.posicaoEmX = this.posicaoEmX + this.deslocamentoEmX;
-        this.posicaoEmY = this.posicaoEmY + this.deslocamentoEmY;
+        setPosicaoEmX(getPosicaoEmX() + this.deslocamentoEmX);
+        setPosicaoEmY(getPosicaoEmY() + this.deslocamentoEmY);
     }
 
     public void atirar(){
-        int frenteDaNave = this.posicaoEmX + this.larguraImagem - 20;
-        int meioDaNave = this.posicaoEmY + (this.larguraImagem / 2) - 24;
+        int frenteDaNave = getPosicaoEmX() + this.larguraImagem - 20;
+        int meioDaNave = getPosicaoEmY() + (this.larguraImagem / 2) - 14;
         Tiro tiro = new Tiro(frenteDaNave, meioDaNave);
         this.tiros.add(tiro);
     }
@@ -61,30 +57,22 @@ public class Personagem {
             case KeyEvent.VK_RIGHT:
                 this.deslocamentoEmX = DESLOCAMENTO;
                 break;
+            case KeyEvent.VK_W:
+                this.deslocamentoEmY = -DESLOCAMENTO;
+                break;
+            case KeyEvent.VK_S:
+                this.deslocamentoEmY = DESLOCAMENTO;
+                break;
+            case KeyEvent.VK_A:
+                this.deslocamentoEmX = -DESLOCAMENTO;
+                break;
+            case KeyEvent.VK_D:
+                this.deslocamentoEmX = DESLOCAMENTO;
+                break;
             default:
                 break;
     }
 }
-    
-    public void moverSetinha(KeyEvent tecla) {
-        int codigo = tecla.getKeyCode();
-        switch (codigo) {
-            case KeyEvent.VK_W:
-                this.deslocamentoEmY = -velocidadeDeDeslocamento;
-                break;
-            case KeyEvent.VK_S:
-                this.deslocamentoEmY = velocidadeDeDeslocamento;
-                break;
-            case KeyEvent.VK_D:
-                this.deslocamentoEmX = -velocidadeDeDeslocamento;
-                break;
-            case KeyEvent.VK_A:
-                this.deslocamentoEmX = velocidadeDeDeslocamento;
-                break;
-            default:
-                break;
-        }
-    }
 
     public void parar(KeyEvent tecla) {
         int codigo = tecla.getKeyCode();
@@ -101,25 +89,21 @@ public class Personagem {
             case KeyEvent.VK_RIGHT:
                 this.deslocamentoEmX = 0;
                 break;
+            case KeyEvent.VK_W:
+                this.deslocamentoEmY = 0;
+                break;
+            case KeyEvent.VK_S:
+                this.deslocamentoEmY = 0;
+                break;
+            case KeyEvent.VK_D:
+                this.deslocamentoEmX = 0;
+                break;
+            case KeyEvent.VK_A:
+                this.deslocamentoEmX = 0;
+                break;
             default:
                 break;
         }
-    }
-
-    public int getPosicaoEmX() {
-        return this.posicaoEmX;
-    }
-
-    public void setPosicaoEmX(int posicaoEmX) {
-        this.posicaoEmX = posicaoEmX;
-    }
-
-    public int getPosicaoEmY() {
-        return this.posicaoEmY;
-    }
-
-    public void setPosicaoEmY(int posicaoEmY) {
-        this.posicaoEmY = posicaoEmY;
     }
 
     public int getDeslocamentoEmX() {
@@ -136,30 +120,6 @@ public class Personagem {
 
     public void setDeslocamentoEmY(int deslocamentoEmY) {
         this.deslocamentoEmY = deslocamentoEmY;
-    }
-
-    public Image getImagem() {
-        return this.imagem;
-    }
-
-    public void setImagem(Image imagem) {
-        this.imagem = imagem;
-    }
-
-    public int getLarguraImagem() {
-        return this.larguraImagem;
-    }
-
-    public void setLarguraImagem(int larguraImagem) {
-        this.larguraImagem = larguraImagem;
-    }
-
-    public int getAlturaImagem() {
-        return this.alturaImagem;
-    }
-
-    public void setAlturaImagem(int alturaImagem) {
-        this.alturaImagem = alturaImagem;
     }
 
     public ArrayList<Tiro> getTiros() {
