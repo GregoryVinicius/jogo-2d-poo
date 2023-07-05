@@ -3,10 +3,11 @@ package br.ifpr.jogo.principal;
 import javax.swing.JFrame;
 
 import br.ifpr.jogo.modelo.Fase;
+import br.ifpr.jogo.modelo.FaseUm;
 
 public class Principal extends JFrame{
     public Principal(){
-        Fase fase = new Fase();
+        Fase fase = new FaseUm();
         super.add(fase);
         setVisible(true);
         setSize(1920, 1080);

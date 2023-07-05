@@ -1,121 +1,67 @@
+
 package br.ifpr.jogo.modelo;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
+
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class Fase extends JPanel implements KeyListener, ActionListener{
-    private Image fundo;
-    private Personagem personagem;
-    private Timer timer;
-    private ArrayList<Inimigo> inimigos;
+public abstract class Fase extends JPanel implements ActionListener, KeyListener {
+    public static final int DELAY = 5;
+    public static final int LARGURA_DA_JANELA = 938;
+    public static final int QTDE_DE_INIMIGOS = 40;
 
-    private static final int DELAY = 5;
-    private static final int VELOCIDA_DE_DESLOCAMENTO = 3;
-    private static final int LARGURA_DA_JANELA = 1920;
-    private static final int QTDE_DE_INIMIGOS = 40;
+    protected Image fundo;
+    protected Personagem personagem;
+    protected ArrayList<Inimigo> inimigos;
+    protected Timer timer;
+    protected boolean emJogo = true;
 
-    public Fase(){
-        this.setFocusable(true);
-        this.setDoubleBuffered(true);
-        ImageIcon carregando = new ImageIcon("recursos\\fundo.png");
-        this.fundo = carregando.getImage();
-        
-        this.personagem = new Personagem(VELOCIDA_DE_DESLOCAMENTO);
-        this.personagem.carregar();
-
-        this.inicializaInimigos();
-
-        this.addKeyListener(this);
-
-        this.timer = new Timer(DELAY, this);
-        this.timer.start();
+    public Fase() {
+        setFocusable(true); // + define o foco inicial do jogo
+        setDoubleBuffered(true); // + Otimização computacional
+        addKeyListener(this); // + Definindo que a própria classe irá controlar os eventos do teclado
     }
 
-    public void paint(Graphics g) {
-    Graphics2D graficos = (Graphics2D) g;
-    graficos.drawImage(fundo, 0, 0, null);
-    graficos.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), personagem.getPosicaoEmY(), this);
+    public abstract void verificarColisoes();
 
-    ArrayList<Tiro> tiros = personagem.getTiros();
-    for (Tiro tiro : tiros) {
-        
-        tiro.carregar();
-
-        graficos.drawImage(tiro.getImagem(), tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), this);
-    }
-
-    for (Inimigo inimigo : inimigos){
-        
-        inimigo.carregar();
-
-        graficos.drawImage(inimigo.getImagem(), inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), this);
-    }
-
-    g.dispose();
-}
-    public void inicializaInimigos(){
-        inimigos = new ArrayList<Inimigo>();
-        for(int i = 0; i < QTDE_DE_INIMIGOS; i++){
-            int x = (int) (Math.random() * 8000 + 1024);
-            int y = (int) (Math.random() * 650 + 30);
-            Inimigo inimigo = new Inimigo(x, y);
-            inimigos.add(inimigo);
-        }
-    }
+    public abstract void inicializaInimigos();
 
     @Override
     public void keyTyped(KeyEvent e) {
-        
     }
 
     @Override
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_SPACE){
-            personagem.atirar();
-        }else{
-            this.personagem.mover(e);
-        }
-    }
+    public abstract void keyPressed(KeyEvent e);
 
     @Override
-    public void keyReleased(KeyEvent e) {
-        this.personagem.parar(e);
-    }
+    public abstract void keyReleased(KeyEvent e);
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.personagem.atualizar();
-        
+        personagem.atualizar();
         ArrayList<Tiro> tiros = personagem.getTiros();
-
-        for(int i = 0; i < tiros.size(); i++){
-            if(tiros.get(i).getPosicaoEmX() > LARGURA_DA_JANELA){
-                tiros.remove(i);
-            }else{
-                tiros.get(i).atualizar();
-            }
+        for (int i = 0; i < tiros.size(); i++) {
+            Tiro tiro = tiros.get(i);
+            if (tiro.getPosicaoEmX() > LARGURA_DA_JANELA || !tiro.getEhVisivel())
+                tiros.remove(tiro);
+            else
+                tiro.atualizar();
         }
-
-        for (int i = 0; i < this.inimigos.size(); i++){
-
+        for (int i = 0; i < this.inimigos.size(); i++) {
             Inimigo inimigo = this.inimigos.get(i);
-
-            if (inimigo.getPosicaoEmX() < 0){
-                inimigos.remove(inimigos);
-            }else{
+            if (inimigo.getPosicaoEmX() < 0 || !inimigo.getEhVisivel())
+                inimigos.remove(inimigo);
+            else
                 inimigo.atualizar();
-            }
         }
+        this.verificarColisoes();
         repaint();
     }
-
 }
