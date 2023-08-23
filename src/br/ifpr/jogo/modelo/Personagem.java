@@ -11,7 +11,7 @@ public class Personagem extends ElementoGrafico{
     private int velocidadeDeDeslocamento;
     private ArrayList<Tiro> tiros;
 
-    private static final int DESLOCAMENTO = 3;
+    private static final int DESLOCAMENTO = 10;
     private static final int POSICAO_INICIAL_EM_X = 100;
     private static final int POSICAO_INICIAL_EM_Y = 100;
 

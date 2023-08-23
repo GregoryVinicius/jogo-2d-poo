@@ -2,9 +2,7 @@
 package br.ifpr.jogo.modelo;
 
 import java.awt.Image;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
@@ -31,36 +29,4 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
     public abstract void verificarColisoes();
 
     public abstract void inicializaInimigos();
-
-    @Override
-    public void keyTyped(KeyEvent e) {
-    }
-
-    @Override
-    public abstract void keyPressed(KeyEvent e);
-
-    @Override
-    public abstract void keyReleased(KeyEvent e);
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        personagem.atualizar();
-        ArrayList<Tiro> tiros = personagem.getTiros();
-        for (int i = 0; i < tiros.size(); i++) {
-            Tiro tiro = tiros.get(i);
-            if (tiro.getPosicaoEmX() > LARGURA_DA_JANELA || !tiro.getEhVisivel())
-                tiros.remove(tiro);
-            else
-                tiro.atualizar();
-        }
-        for (int i = 0; i < this.inimigos.size(); i++) {
-            Inimigo inimigo = this.inimigos.get(i);
-            if (inimigo.getPosicaoEmX() < 0 || !inimigo.getEhVisivel())
-                inimigos.remove(inimigo);
-            else
-                inimigo.atualizar();
-        }
-        this.verificarColisoes();
-        repaint();
-    }
 }

@@ -57,8 +57,8 @@ public class FaseUm extends Fase {
                 graficos.drawImage(inimigo.getImagem(), inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), this);
             }
         }else{
-            ImageIcon fimDeJogo = new ImageIcon("recusrsos\\fimdejogo.jpeg");
-            graficos.drawImage(fimDeJogo.getImage(), 0, 0, null);
+            ImageIcon fimDeJogo = new ImageIcon("recursos\\fimdejogo.jpg");
+            graficos.drawImage(fimDeJogo.getImage(), 600, 200, null);
         }
 
         g.dispose();
@@ -104,25 +104,28 @@ public class FaseUm extends Fase {
     @Override
     public void actionPerformed(ActionEvent e) {
         personagem.atualizar();
-
         ArrayList<Tiro> tiros = personagem.getTiros();
-
         for (int i = 0; i < tiros.size(); i++) {
             Tiro tiro = tiros.get(i);
-            if (tiro.getPosicaoEmX() > LARGURA_DA_JANELA)
+            if (tiro.getPosicaoEmX() > LARGURA_DA_JANELA || !tiro.getEhVisivel())
                 tiros.remove(tiro);
             else
                 tiro.atualizar();
         }
         for (int i = 0; i < this.inimigos.size(); i++) {
             Inimigo inimigo = this.inimigos.get(i);
-            if (inimigo.getPosicaoEmX() < 0)
+            if (inimigo.getPosicaoEmX() < 0 || !inimigo.getEhVisivel())
                 inimigos.remove(inimigo);
             else
                 inimigo.atualizar();
         }
         this.verificarColisoes();
         repaint();
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // TODO Auto-generated method stub
     }
 
 }

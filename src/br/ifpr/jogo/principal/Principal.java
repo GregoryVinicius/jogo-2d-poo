@@ -16,6 +16,6 @@ public class Principal extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
     public static void main(String[] args){
-        Principal principal = new Principal(); 
+        Principal principal = new Principal();
     }
 }
