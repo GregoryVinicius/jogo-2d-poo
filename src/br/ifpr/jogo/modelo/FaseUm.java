@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
 
+import br.ifpr.jogo.principal.Principal;
+
 public class FaseUm extends Fase {
 
     public FaseUm() { 
@@ -20,8 +22,9 @@ public class FaseUm extends Fase {
         personagem = new Personagem(3);
         personagem.carregar();
 
-        this.inicializaInimigos();
+        this.inicializaElementosGraficosAdicionais();
 
+        this.inicializaInimigos();
         timer = new Timer(DELAY, this); 
         timer.start(); 
     }
@@ -43,6 +46,12 @@ public class FaseUm extends Fase {
         Graphics2D graficos = (Graphics2D) g;
         if(emJogo){
             graficos.drawImage(fundo, 0, 0, null);
+
+            for (Asteroide asteroide : asteroides) {
+
+                graficos.drawImage(asteroide.getImagem(), asteroide.getPosicaoEmX(), asteroide.getPosicaoEmY(), this);
+            }
+
             graficos.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), personagem.getPosicaoEmY(), this);
 
             ArrayList<Tiro> tiros = personagem.getTiros();
@@ -104,6 +113,9 @@ public class FaseUm extends Fase {
     @Override
     public void actionPerformed(ActionEvent e) {
         personagem.atualizar();
+        for (Asteroide asteroide : this.asteroides) {
+            asteroide.atualizar();
+        }
         ArrayList<Tiro> tiros = personagem.getTiros();
         for (int i = 0; i < tiros.size(); i++) {
             Tiro tiro = tiros.get(i);
@@ -128,4 +140,14 @@ public class FaseUm extends Fase {
         // TODO Auto-generated method stub
     }
 
+    @Override
+    public void inicializaElementosGraficosAdicionais() {
+        super.asteroides = new ArrayList<Asteroide>();
+        for (int i = 0; i < QTDE_DE_ASTEROIDES; i++) {
+            int x = (int) (Math.random() * Principal.LARGURA_DA_JANELA);
+            int y = (int) (Math.random() * Principal.ALTURA_DA_JANELA);
+            Asteroide asteroide = new Asteroide(x, y);
+            super.asteroides.add(asteroide);
+        }
+    }
 }

@@ -1,6 +1,5 @@
 package br.ifpr.jogo.modelo;
 
-import java.awt.Image;
 import javax.swing.ImageIcon;
 import br.ifpr.jogo.principal.Principal;
 
