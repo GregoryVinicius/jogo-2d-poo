@@ -42,6 +42,14 @@ public class FaseUm extends Fase {
     }
 
     @Override
+    public void desenhaPontuacao(Graphics2D graficos) {
+        String textoPontuacao = "PONTOS: " + personagem.getPontuacao();
+        graficos.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 22));
+        graficos.setColor(new java.awt.Color(255, 255, 255));
+        graficos.drawString(textoPontuacao, 20, 25);
+    }
+
+    @Override
     public void paint(Graphics g) {
         Graphics2D graficos = (Graphics2D) g;
         if(emJogo){
@@ -65,6 +73,7 @@ public class FaseUm extends Fase {
                 inimigo.carregar();
                 graficos.drawImage(inimigo.getImagem(), inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), this);
             }
+            desenhaPontuacao(graficos);
         }else{
             ImageIcon fimDeJogo = new ImageIcon("recursos\\fimdejogo.jpg");
             graficos.drawImage(fimDeJogo.getImage(), 600, 200, null);
@@ -91,6 +100,8 @@ public class FaseUm extends Fase {
                 if(formaInimigo.intersects(formaTiro)){
                     inimigo.setEhVisivel(false);
                     tiro.setEhVisivel(false);
+                    int pontuacaoAtual = this.personagem.getPontuacao();
+                    this.personagem.setPontuacao(pontuacaoAtual + PONTOS_POR_INIMIGO);
                 }
 
             }
