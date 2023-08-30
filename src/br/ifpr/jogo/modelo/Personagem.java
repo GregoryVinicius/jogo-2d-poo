@@ -11,6 +11,7 @@ public class Personagem extends ElementoGrafico{
     private int velocidadeDeDeslocamento;
     private ArrayList<Tiro> tiros;
     private int pontuacao;
+    private int vidas = 3;
 
     private static final int DESLOCAMENTO = 10;
     private static final int POSICAO_INICIAL_EM_X = 100;
@@ -142,5 +143,13 @@ public class Personagem extends ElementoGrafico{
 
     public void setPontuacao(int pontos) {
         this.pontuacao = pontos;
+    }
+
+    public int getVidas(){
+        return this.vidas;
+    }
+
+    public void setVidas(int vidas){
+        this.vidas = vidas;
     }
 }

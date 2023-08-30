@@ -50,6 +50,14 @@ public class FaseUm extends Fase {
     }
 
     @Override
+    public void desenhaVidas(Graphics2D graficos){
+        String textoVidas = "vidas: " + personagem.getVidas();
+        graficos.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 22));
+        graficos.setColor(new java.awt.Color(255, 255, 255));
+        graficos.drawString(textoVidas, 20, 50);
+    }
+
+    @Override
     public void paint(Graphics g) {
         Graphics2D graficos = (Graphics2D) g;
         if(emJogo){
@@ -73,7 +81,10 @@ public class FaseUm extends Fase {
                 inimigo.carregar();
                 graficos.drawImage(inimigo.getImagem(), inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), this);
             }
+            
             desenhaPontuacao(graficos);
+
+            desenhaVidas(graficos);
         }else{
             ImageIcon fimDeJogo = new ImageIcon("recursos\\fimdejogo.jpg");
             graficos.drawImage(fimDeJogo.getImage(), 600, 200, null);
@@ -88,10 +99,13 @@ public class FaseUm extends Fase {
         for(int i = 0; i < this.inimigos.size(); i++){
             Inimigo inimigo = inimigos.get(i);
             Rectangle formaInimigo = inimigo.getRectangle();
-            if(formaInimigo.intersects(formaPersonagem)){
+            if(formaInimigo.intersects(formaPersonagem) && personagem.getVidas() == 0){
                 this.personagem.setEhVisivel(false);
                 inimigo.setEhVisivel(false);
                 emJogo = false;
+            }else if(formaInimigo.intersects(formaPersonagem) && personagem.getVidas() > 0){
+                inimigo.setEhVisivel(false);
+                personagem.setVidas(personagem.getVidas() - 1);
             }
             ArrayList<Tiro> tiros = this.personagem.getTiros();
             for(int j = 0; j < tiros.size(); j++){

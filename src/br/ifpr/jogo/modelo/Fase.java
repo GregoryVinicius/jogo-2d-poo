@@ -38,4 +38,6 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
     public abstract void inicializaElementosGraficosAdicionais();
     
     public abstract void desenhaPontuacao(Graphics2D graficos);
+
+    public abstract void desenhaVidas(Graphics2D graficos);
 }
