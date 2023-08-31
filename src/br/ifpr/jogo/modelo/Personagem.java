@@ -37,8 +37,8 @@ public class Personagem extends ElementoGrafico{
     }
 
     public void atirar(){
-        int frenteDaNave = getPosicaoEmX() + this.larguraImagem - 20;
-        int meioDaNave = getPosicaoEmY() + (this.larguraImagem / 2) - 14;
+        int frenteDaNave = getPosicaoEmX() + this.larguraImagem - 15;
+        int meioDaNave = getPosicaoEmY() + (this.larguraImagem / 2) - 23;
         Tiro tiro = new Tiro(frenteDaNave, meioDaNave);
         this.tiros.add(tiro);
     }

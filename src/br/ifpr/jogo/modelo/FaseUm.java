@@ -25,6 +25,9 @@ public class FaseUm extends Fase {
         this.inicializaElementosGraficosAdicionais();
 
         this.inicializaInimigos();
+
+        // this.inicializaVidas();
+
         timer = new Timer(DELAY, this); 
         timer.start(); 
     }
@@ -41,6 +44,18 @@ public class FaseUm extends Fase {
         }
     }
 
+    // @Override
+    // public void inicializaVidas(){
+    //     vidas = new ArrayList<Vida>();
+
+    //     for (int i = 0; i < QTDE_DE_VIDAS; i++) {
+    //         int x = (int) (Math.random() * 8000 + 1024);
+    //         int y = (int) (Math.random() * 650 + 30);
+    //         Vida vida = new Vida(x, y);
+    //         vidas.add(vida);
+    //     }
+    // }
+
     @Override
     public void desenhaPontuacao(Graphics2D graficos) {
         String textoPontuacao = "PONTOS: " + personagem.getPontuacao();
@@ -51,7 +66,7 @@ public class FaseUm extends Fase {
 
     @Override
     public void desenhaVidas(Graphics2D graficos){
-        String textoVidas = "vidas: " + personagem.getVidas();
+        String textoVidas = "VIDAS: " + personagem.getVidas();
         graficos.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 22));
         graficos.setColor(new java.awt.Color(255, 255, 255));
         graficos.drawString(textoVidas, 20, 50);
@@ -81,12 +96,16 @@ public class FaseUm extends Fase {
                 inimigo.carregar();
                 graficos.drawImage(inimigo.getImagem(), inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), this);
             }
-            
+
+            // for (Vida vida : vidas) {
+            //     vida.carregar();
+            //     graficos.drawImage(vida.getImagem(), vida.getPosicaoEmX(), vida.getPosicaoEmY(), this);
+            // }
             desenhaPontuacao(graficos);
 
             desenhaVidas(graficos);
         }else{
-            ImageIcon fimDeJogo = new ImageIcon("recursos\\fimdejogo.jpg");
+            ImageIcon fimDeJogo = new ImageIcon("recursos\\fimDejogo.jpg");
             graficos.drawImage(fimDeJogo.getImage(), 600, 200, null);
         }
 
@@ -107,6 +126,12 @@ public class FaseUm extends Fase {
                 inimigo.setEhVisivel(false);
                 personagem.setVidas(personagem.getVidas() - 1);
             }
+            // Vida vida = vidas.get(i);
+            // Rectangle formaVida = vida.getRectangle();
+            // if(formaVida.intersects(formaPersonagem)){
+            //     personagem.setVidas(personagem.getVidas() + 1);
+            //     vida.setEhVisivel(false);
+            // }
             ArrayList<Tiro> tiros = this.personagem.getTiros();
             for(int j = 0; j < tiros.size(); j++){
                 Tiro tiro = tiros.get(j);
@@ -156,13 +181,20 @@ public class FaseUm extends Fase {
             else
                 inimigo.atualizar();
         }
+        // for (int i = 0; i < this.vidas.size(); i++) {
+        //     Vida vida = this.vidas.get(i);
+        //     if (vida.getPosicaoEmX() < 0 || !vida.getEhVisivel())
+        //         vidas.remove(vida);
+        //     else
+        //         vida.atualizar();
+        // }
         this.verificarColisoes();
         repaint();
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        // TODO Auto-generated method stub
+
     }
 
     @Override
