@@ -126,6 +126,16 @@ public class FaseUm extends Fase {
                 inimigo.setEhVisivel(false);
                 personagem.setVidas(personagem.getVidas() - 1);
             }
+            if(personagem.getPosicaoEmX() < 0){
+                personagem.setPosicaoEmX(personagem.getPosicaoEmX() + 1);
+            }else if(personagem.getPosicaoEmX() > Principal.LARGURA_DA_JANELA - personagem.imagem.getWidth(null) - 15){
+                personagem.setPosicaoEmX(personagem.getPosicaoEmX() - 1);
+            }
+            if(personagem.getPosicaoEmY() < 0){
+                personagem.setPosicaoEmY(personagem.getPosicaoEmY() + 1);
+            } else if (personagem.getPosicaoEmY() > Principal.ALTURA_DA_JANELA - personagem.imagem.getHeight(null) - 72) {
+                personagem.setPosicaoEmY(personagem.getPosicaoEmY() - 1);
+            }
             // Vida vida = vidas.get(i);
             // Rectangle formaVida = vida.getRectangle();
             // if(formaVida.intersects(formaPersonagem)){
