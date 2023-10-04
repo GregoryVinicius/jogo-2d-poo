@@ -2,7 +2,6 @@ package br.ifpr.jogo.modelo;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 
 public class Personagem extends ElementoGrafico{

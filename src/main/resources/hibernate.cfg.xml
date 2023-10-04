@@ -21,13 +21,13 @@
         <mapping class="ifpr.paranavai.jogo.modelo.Jogador" />
         <!-- Classes que serão persistidas em sala e/ou trabalho -->
         <!--
-        <mapping class="ifpr.paranavai.jogo.modelo.ElementoGrafico" />
-        <mapping class="ifpr.paranavai.jogo.modelo.Personagem" />
-        <mapping class="ifpr.paranavai.jogo.modelo.Inimigo" />
-        <mapping class="ifpr.paranavai.jogo.modelo.Tiro" />
-        <mapping class="ifpr.paranavai.jogo.modelo.FaseUm" />
-        <mapping class="ifpr.paranavai.jogo.modelo.Pessoa" />
-        <mapping class="ifpr.paranavai.jogo.modelo.Asteroide" />
+        <mapping class="br.ifpr.jogo.modelo.ElementoGrafico" />
+        <mapping class="br.ifpr.jogo.modelo.Personagem" />
+        <mapping class="br.ifpr.jogo.modelo.Inimigo" />
+        <mapping class="br.ifpr.jogo.modelo.Tiro" />
+        <mapping class="br.ifpr.jogo.modelo.FaseUm" />
+        <mapping class="br.ifpr.jogo.modelo.Pessoa" />
+        <mapping class="br.ifpr.jogo.modelo.Asteroide" />
         -->
     </session-factory>
 </hibernate-configuration>

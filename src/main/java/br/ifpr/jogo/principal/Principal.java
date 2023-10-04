@@ -1,7 +1,6 @@
 package br.ifpr.jogo.principal;
 
 import javax.swing.JFrame;
-
 import br.ifpr.jogo.modelo.Fase;
 import br.ifpr.jogo.modelo.FaseUm;
 
@@ -19,6 +18,6 @@ public class Principal extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
     public static void main(String[] args){
-        Principal psrincipal = new Principal();
+        Principal principal = new Principal();
     }
 }
