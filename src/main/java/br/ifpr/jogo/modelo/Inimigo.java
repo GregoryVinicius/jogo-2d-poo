@@ -1,7 +1,11 @@
 package br.ifpr.jogo.modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.swing.ImageIcon;
 
+@Entity
+@Table(name = "tb_inimigo")
 public class Inimigo extends ElementoGrafico{
     private static final int VELOCIDADE = 5;
     

@@ -17,7 +17,7 @@ public class FaseUm extends Fase {
         ImageIcon carregando = new ImageIcon(getClass().getResource("/fundo.png"));
         fundo = carregando.getImage();
 
-        personagem = new Personagem(3);
+        personagem = new Personagem();
         personagem.carregar();
 
         this.inicializaElementosGraficosAdicionais();
