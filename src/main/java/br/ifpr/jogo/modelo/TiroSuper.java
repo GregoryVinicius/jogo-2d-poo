@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 @Entity
 @Table(name = "tb_tiro_super")
 public class TiroSuper extends ElementoGrafico{
-    private static final int VELOCIDADE = 5;
+    private static final int VELOCIDADE = 0;
 
     public TiroSuper(int posicaoPersonagemEmX, int posicaoPersonagemEmY){
         setPosicaoEmX(posicaoPersonagemEmX);

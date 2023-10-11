@@ -33,9 +33,10 @@ public class Personagem extends ElementoGrafico{
     @Column(name="pontuação")
     private int pontuacao;
     
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "fk_tiro")
+    @OneToMany(mappedBy = "personagem")
     private ArrayList<Tiro> tiros;
 
+    private ArrayList<TiroSuper> tiroSupers;
     private int vidas = 3;
     
     
@@ -44,6 +45,7 @@ public class Personagem extends ElementoGrafico{
         setPosicaoEmX(POSICAO_INICIAL_EM_X);
         setPosicaoEmY(POSICAO_INICIAL_EM_Y);
         this.tiros = new ArrayList<Tiro>();
+        this.tiroSupers = new ArrayList<TiroSuper>();
     }
 
     public void carregar(){
@@ -63,6 +65,13 @@ public class Personagem extends ElementoGrafico{
         int meioDaNave = getPosicaoEmY() + (this.larguraImagem / 2) - 23;
         Tiro tiro = new Tiro(frenteDaNave, meioDaNave);
         this.tiros.add(tiro);
+    }
+
+    public void atirarSuper(){
+        int frenteDaNave = getPosicaoEmX() + this.larguraImagem - 15;
+        int meioDaNave = getPosicaoEmY() + (this.larguraImagem / 2) - 23;
+        TiroSuper tiroSuper = new TiroSuper(frenteDaNave, meioDaNave);
+        this.tiroSupers.add(tiroSuper);
     }
 
     public void mover(KeyEvent tecla) {
@@ -175,5 +184,12 @@ public class Personagem extends ElementoGrafico{
     public void setIdPersonagem(Integer idPersonagem) {
         this.idPersonagem = idPersonagem;
     }
-    
+
+    public ArrayList<TiroSuper> getTiroSupers() {
+        return tiroSupers;
+    }
+
+    public void setTiroSupers(ArrayList<TiroSuper> tiroSupers) {
+        this.tiroSupers = tiroSupers;
+    }
 }

@@ -159,6 +159,8 @@ public class FaseUm extends Fase {
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_SPACE)
             personagem.atirar();
+        else if(e.getKeyCode() == KeyEvent.VK_Q)
+            personagem.atirarSuper();
         else
             personagem.mover(e);
     }
