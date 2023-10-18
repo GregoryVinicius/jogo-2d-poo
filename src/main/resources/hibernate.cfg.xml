@@ -25,16 +25,5 @@
         <mapping class="ifpr.paranavai.jogo.modelo.Tiro" />
         <mapping class="ifpr.paranavai.jogo.modelo.TiroSuper" />
         <mapping class="ifpr.paranavai.jogo.modelo.Vida" />
-        <!-- Classes que serão persistidas no tutorial -->
-        <!-- Classes que serão persistidas em sala e/ou trabalho -->
-        <!--
-        <mapping class="br.ifpr.jogo.modelo.ElementoGrafico" />
-        <mapping class="br.ifpr.jogo.modelo.Personagem" />
-        <mapping class="br.ifpr.jogo.modelo.Inimigo" />
-        <mapping class="br.ifpr.jogo.modelo.Tiro" />
-        <mapping class="br.ifpr.jogo.modelo.FaseUm" />
-        <mapping class="br.ifpr.jogo.modelo.Pessoa" />
-        <mapping class="br.ifpr.jogo.modelo.Asteroide" />
-        -->
     </session-factory>
 </hibernate-configuration>
