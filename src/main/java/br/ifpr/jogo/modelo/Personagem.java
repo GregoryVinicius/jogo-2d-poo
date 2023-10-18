@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "tb_personagem")
 public class Personagem extends ElementoGrafico{
-    private static final int DESLOCAMENTO = 10;
+    private static final int DESLOCAMENTO = 8;
     private static final int POSICAO_INICIAL_EM_X = 100;
     private static final int POSICAO_INICIAL_EM_Y = 100;
 

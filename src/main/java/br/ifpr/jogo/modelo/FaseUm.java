@@ -81,20 +81,20 @@ public class FaseUm extends Fase {
                 graficos.drawImage(asteroide.getImagem(), asteroide.getPosicaoEmX(), asteroide.getPosicaoEmY(), this);
             }
 
-            graficos.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), personagem.getPosicaoEmY(), this);
-
+            
             ArrayList<Tiro> tiros = personagem.getTiros();
-
+            
             for (Tiro tiro : tiros) {
                 tiro.carregar();
                 graficos.drawImage(tiro.getImagem(), tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), this);
             }
-
+            
             for (Inimigo inimigo : inimigos) {
                 inimigo.carregar();
                 graficos.drawImage(inimigo.getImagem(), inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), this);
             }
-
+            graficos.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), personagem.getPosicaoEmY(), this);
+            
             // for (Vida vida : vidas) {
             //     vida.carregar();
             //     graficos.drawImage(vida.getImagem(), vida.getPosicaoEmX(), vida.getPosicaoEmY(), this);
@@ -124,22 +124,12 @@ public class FaseUm extends Fase {
                 inimigo.setEhVisivel(false);
                 personagem.setVidas(personagem.getVidas() - 1);
             }
-            if(personagem.getPosicaoEmX() < 0){
-                personagem.setPosicaoEmX(personagem.getPosicaoEmX() + 1);
-            }else if(personagem.getPosicaoEmX() > Principal.LARGURA_DA_JANELA - personagem.imagem.getWidth(null) - 15){
-                personagem.setPosicaoEmX(personagem.getPosicaoEmX() - 1);
-            }
-            if(personagem.getPosicaoEmY() < 0){
-                personagem.setPosicaoEmY(personagem.getPosicaoEmY() + 1);
-            } else if (personagem.getPosicaoEmY() > Principal.ALTURA_DA_JANELA - personagem.imagem.getHeight(null) - 72) {
-                personagem.setPosicaoEmY(personagem.getPosicaoEmY() - 1);
-            }
             // Vida vida = vidas.get(i);
             // Rectangle formaVida = vida.getRectangle();
             // if(formaVida.intersects(formaPersonagem)){
-            //     personagem.setVidas(personagem.getVidas() + 1);
-            //     vida.setEhVisivel(false);
-            // }
+                //     personagem.setVidas(personagem.getVidas() + 1);
+                //     vida.setEhVisivel(false);
+                // }
             ArrayList<Tiro> tiros = this.personagem.getTiros();
             for(int j = 0; j < tiros.size(); j++){
                 Tiro tiro = tiros.get(j);
@@ -150,11 +140,21 @@ public class FaseUm extends Fase {
                     int pontuacaoAtual = this.personagem.getPontuacao();
                     this.personagem.setPontuacao(pontuacaoAtual + PONTOS_POR_INIMIGO);
                 }
-
+                
             }
         }
+        if(personagem.getPosicaoEmX() < 0){
+            personagem.setPosicaoEmX(personagem.getPosicaoEmX() + 10);
+        }else if(personagem.getPosicaoEmX() > Principal.LARGURA_DA_JANELA - personagem.imagem.getWidth(null) - 15){
+            personagem.setPosicaoEmX(personagem.getPosicaoEmX() - 10);
+        }
+        if(personagem.getPosicaoEmY() < 0){
+            personagem.setPosicaoEmY(personagem.getPosicaoEmY() + 10);
+        } else if (personagem.getPosicaoEmY() > Principal.ALTURA_DA_JANELA - personagem.imagem.getHeight(null) - 72) {
+            personagem.setPosicaoEmY(personagem.getPosicaoEmY() - 10);
+        }
     }
-
+    
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_SPACE)
