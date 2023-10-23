@@ -144,14 +144,14 @@ public class FaseUm extends Fase {
             }
         }
         if(personagem.getPosicaoEmX() < 0){
-            personagem.setPosicaoEmX(personagem.getPosicaoEmX() + 10);
+            personagem.setPosicaoEmX(personagem.getPosicaoEmX() + 8);
         }else if(personagem.getPosicaoEmX() > Principal.LARGURA_DA_JANELA - personagem.imagem.getWidth(null) - 15){
-            personagem.setPosicaoEmX(personagem.getPosicaoEmX() - 10);
+            personagem.setPosicaoEmX(personagem.getPosicaoEmX() - 8);
         }
         if(personagem.getPosicaoEmY() < 0){
-            personagem.setPosicaoEmY(personagem.getPosicaoEmY() + 10);
+            personagem.setPosicaoEmY(personagem.getPosicaoEmY() + 8);
         } else if (personagem.getPosicaoEmY() > Principal.ALTURA_DA_JANELA - personagem.imagem.getHeight(null) - 72) {
-            personagem.setPosicaoEmY(personagem.getPosicaoEmY() - 10);
+            personagem.setPosicaoEmY(personagem.getPosicaoEmY() - 8);
         }
     }
     
