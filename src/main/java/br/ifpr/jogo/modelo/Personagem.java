@@ -1,8 +1,12 @@
 package br.ifpr.jogo.modelo;
 
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
+
+import br.ifpr.jogo.principal.Principal;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -68,8 +72,8 @@ public class Personagem extends ElementoGrafico{
     }
 
     public void atirarSuper(){
-        int frenteDaNave = getPosicaoEmX() + this.larguraImagem - 15;
-        int meioDaNave = getPosicaoEmY() + (this.larguraImagem / 2) - 23;
+        int frenteDaNave = getPosicaoEmX() + this.larguraImagem;
+        int meioDaNave = getPosicaoEmY() + (this.larguraImagem / 2);
         TiroSuper tiroSuper = new TiroSuper(frenteDaNave, meioDaNave);
         this.tiroSupers.add(tiroSuper);
     }
@@ -135,6 +139,20 @@ public class Personagem extends ElementoGrafico{
                 break;
             default:
                 break;
+        }
+    }
+
+    public void colisaoParede(){
+        Rectangle formaPersonagem = this.getRectangle();
+        if(this.getPosicaoEmX() < 0){
+            this.setPosicaoEmX(this.getPosicaoEmX() + 8);
+        }else if(this.getPosicaoEmX() > Principal.LARGURA_DA_JANELA - this.imagem.getWidth(null) - 3){
+            this.setPosicaoEmX(this.getPosicaoEmX() - 8);
+        }
+        if(this.getPosicaoEmY() < 0){
+            this.setPosicaoEmY(this.getPosicaoEmY() + 8);
+        } else if (this.getPosicaoEmY() > Principal.ALTURA_DA_JANELA - this.imagem.getHeight(null) - 60){
+            this.setPosicaoEmY(this.getPosicaoEmY() - 8);
         }
     }
 

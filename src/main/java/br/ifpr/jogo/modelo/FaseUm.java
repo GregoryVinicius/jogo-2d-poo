@@ -81,12 +81,16 @@ public class FaseUm extends Fase {
                 graficos.drawImage(asteroide.getImagem(), asteroide.getPosicaoEmX(), asteroide.getPosicaoEmY(), this);
             }
 
-            
             ArrayList<Tiro> tiros = personagem.getTiros();
-            
             for (Tiro tiro : tiros) {
                 tiro.carregar();
                 graficos.drawImage(tiro.getImagem(), tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), this);
+            }
+            
+            ArrayList<TiroSuper> tirosSupers = personagem.getTiroSupers();
+            for (TiroSuper tiroSuper : tirosSupers) {
+                tiroSuper.carregar();
+                graficos.drawImage(tiroSuper.getImagem(), tiroSuper.getPosicaoEmX(), tiroSuper.getPosicaoEmY(), this);
             }
             
             for (Inimigo inimigo : inimigos) {
@@ -142,17 +146,20 @@ public class FaseUm extends Fase {
                 }
                 
             }
+            ArrayList<TiroSuper> tirosSupers = this.personagem.getTiroSupers();
+            for(int j = 0; j < tirosSupers.size(); j++){
+                TiroSuper tiroSuper = tirosSupers.get(j);
+                Rectangle formaTiroSuper = tiroSuper.getRectangle();
+                if(formaInimigo.intersects(formaTiroSuper)){
+                    inimigo.setEhVisivel(false);
+                    //tiroSuper.setEhVisivel(false);
+                    int pontuacaoAtual = this.personagem.getPontuacao();
+                    this.personagem.setPontuacao(pontuacaoAtual + PONTOS_POR_INIMIGO);
+                }
+                
+            }
         }
-        if(personagem.getPosicaoEmX() < 0){
-            personagem.setPosicaoEmX(personagem.getPosicaoEmX() + 8);
-        }else if(personagem.getPosicaoEmX() > Principal.LARGURA_DA_JANELA - personagem.imagem.getWidth(null) - 15){
-            personagem.setPosicaoEmX(personagem.getPosicaoEmX() - 8);
-        }
-        if(personagem.getPosicaoEmY() < 0){
-            personagem.setPosicaoEmY(personagem.getPosicaoEmY() + 8);
-        } else if (personagem.getPosicaoEmY() > Principal.ALTURA_DA_JANELA - personagem.imagem.getHeight(null) - 72) {
-            personagem.setPosicaoEmY(personagem.getPosicaoEmY() - 8);
-        }
+        personagem.colisaoParede();
     }
     
     @Override
@@ -183,6 +190,14 @@ public class FaseUm extends Fase {
                 tiros.remove(tiro);
             else
                 tiro.atualizar();
+        }
+        ArrayList<TiroSuper> tirosSupers = personagem.getTiroSupers();
+        for (int i = 0; i < tiros.size(); i++) {
+            TiroSuper tiroSuper = tirosSupers.get(i);
+            if (tiroSuper.getPosicaoEmX() > LARGURA_DA_JANELA || !tiroSuper.getEhVisivel())
+                tiros.remove(tiroSuper);
+            else
+                tiroSuper.atualizar();
         }
         for (int i = 0; i < this.inimigos.size(); i++) {
             Inimigo inimigo = this.inimigos.get(i);
