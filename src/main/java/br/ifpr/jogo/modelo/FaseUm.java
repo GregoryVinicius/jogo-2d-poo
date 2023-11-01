@@ -156,7 +156,6 @@ public class FaseUm extends Fase {
                     int pontuacaoAtual = this.personagem.getPontuacao();
                     this.personagem.setPontuacao(pontuacaoAtual + PONTOS_POR_INIMIGO);
                 }
-                
             }
         }
         personagem.colisaoParede();
@@ -192,10 +191,10 @@ public class FaseUm extends Fase {
                 tiro.atualizar();
         }
         ArrayList<TiroSuper> tirosSupers = personagem.getTiroSupers();
-        for (int i = 0; i < tiros.size(); i++) {
+        for (int i = 0; i < tirosSupers.size(); i++) {
             TiroSuper tiroSuper = tirosSupers.get(i);
             if (tiroSuper.getPosicaoEmX() > LARGURA_DA_JANELA || !tiroSuper.getEhVisivel())
-                tiros.remove(tiroSuper);
+                tirosSupers.remove(tiroSuper);
             else
                 tiroSuper.atualizar();
         }
