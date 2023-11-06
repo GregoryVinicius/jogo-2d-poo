@@ -80,6 +80,11 @@ public class FaseUm extends Fase {
 
                 graficos.drawImage(asteroide.getImagem(), asteroide.getPosicaoEmX(), asteroide.getPosicaoEmY(), this);
             }
+            
+            for (Inimigo inimigo : inimigos) {
+                inimigo.carregar();
+                graficos.drawImage(inimigo.getImagem(), inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), this);
+            }
 
             ArrayList<Tiro> tiros = personagem.getTiros();
             for (Tiro tiro : tiros) {
@@ -93,10 +98,7 @@ public class FaseUm extends Fase {
                 graficos.drawImage(tiroSuper.getImagem(), tiroSuper.getPosicaoEmX(), tiroSuper.getPosicaoEmY(), this);
             }
             
-            for (Inimigo inimigo : inimigos) {
-                inimigo.carregar();
-                graficos.drawImage(inimigo.getImagem(), inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), this);
-            }
+           
             graficos.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), personagem.getPosicaoEmY(), this);
             
             // for (Vida vida : vidas) {

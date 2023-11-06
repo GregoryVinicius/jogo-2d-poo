@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 @Entity
 @Table(name = "tb_tiro_super")
 public class TiroSuper extends ElementoGrafico{
-    private static final int VELOCIDADE = 50;
+    private static final int VELOCIDADE = 20;
 
     public TiroSuper(int posicaoPersonagemEmX, int posicaoPersonagemEmY){
         setPosicaoEmX(posicaoPersonagemEmX);
@@ -15,7 +15,7 @@ public class TiroSuper extends ElementoGrafico{
     }
 
     public void carregar(){
-        ImageIcon carregando = new ImageIcon(getClass().getResource("/tiroSuper.png"));
+        ImageIcon carregando = new ImageIcon(getClass().getResource("/tiroSuper.gif"));
         super.imagem = carregando.getImage();
         this.alturaImagem = this.imagem.getWidth(null);
         this.larguraImagem = this.imagem.getHeight(null);

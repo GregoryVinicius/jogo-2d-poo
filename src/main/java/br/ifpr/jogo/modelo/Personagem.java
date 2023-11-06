@@ -15,6 +15,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.Timer;
+import java.util.TimerTask;
 
 @Entity
 @Table(name = "tb_personagem")
@@ -42,6 +44,7 @@ public class Personagem extends ElementoGrafico{
 
     private ArrayList<TiroSuper> tiroSupers;
     private int vidas = 3;
+    private int ativarSuperTiro = 0;
     
     
 
@@ -69,13 +72,17 @@ public class Personagem extends ElementoGrafico{
         int meioDaNave = getPosicaoEmY() + (this.larguraImagem / 2) - 23;
         Tiro tiro = new Tiro(frenteDaNave, meioDaNave);
         this.tiros.add(tiro);
+        ativarSuperTiro += 1;
     }
 
     public void atirarSuper(){
-        int frenteDaNave = getPosicaoEmX() + this.larguraImagem;
-        int meioDaNave = getPosicaoEmY() + (this.larguraImagem / 2);
-        TiroSuper tiroSuper = new TiroSuper(frenteDaNave, meioDaNave);
-        this.tiroSupers.add(tiroSuper);
+        if(ativarSuperTiro >= 10){
+            int frenteDaNave = getPosicaoEmX() + this.larguraImagem;
+            int meioDaNave = getPosicaoEmY() + (this.larguraImagem / 2) - 70;
+            TiroSuper tiroSuper = new TiroSuper(frenteDaNave, meioDaNave);
+            this.tiroSupers.add(tiroSuper);
+            ativarSuperTiro -= 10;
+        }
     }
 
     public void mover(KeyEvent tecla) {
