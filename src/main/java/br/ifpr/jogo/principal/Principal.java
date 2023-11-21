@@ -18,7 +18,6 @@ public class Principal extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
-        
     }
     public static void main(String[] args){
         Principal principal = new Principal();
