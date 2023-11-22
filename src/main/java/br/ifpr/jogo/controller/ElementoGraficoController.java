@@ -6,8 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
-@Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class ElementoGraficoController{
     protected Integer id_elemento_gragico;
     protected int posicaoEmX;

@@ -4,22 +4,17 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
-import br.ifpr.jogo.modelo.Tiro;
-import br.ifpr.jogo.modelo.TiroSuper;
 import br.ifpr.jogo.principal.Principal;
 
 public class PersonagemController extends ElementoGraficoController{
     private static int DESLOCAMENTO = 8;
     private static int POSICAO_INICIAL_EM_X = 100;
     private static int POSICAO_INICIAL_EM_Y = 100;
-
     private int deslocamentoEmX;
     private int deslocamentoEmY;
     private int pontuacao;
-
-    private ArrayList<Tiro> tiros;
-    private ArrayList<TiroSuper> tiroSupers;
-    
+    private ArrayList<TiroController> tiros;
+    private ArrayList<TiroSuperController> tiroSupers;
     private int vidas = 3;
     private int ativarSuperTiro = 0;
     
@@ -28,8 +23,8 @@ public class PersonagemController extends ElementoGraficoController{
     public PersonagemController(){
         setPosicaoEmX(POSICAO_INICIAL_EM_X);
         setPosicaoEmY(POSICAO_INICIAL_EM_Y);
-        this.tiros = new ArrayList<Tiro>();
-        this.tiroSupers = new ArrayList<TiroSuper>();
+        this.tiros = new ArrayList<TiroController>();
+        this.tiroSupers = new ArrayList<TiroSuperController>();
     }
 
     public void carregar(){
@@ -47,7 +42,7 @@ public class PersonagemController extends ElementoGraficoController{
     public void atirar(){
         int frenteDaNave = getPosicaoEmX() + this.larguraImagem - 15;
         int meioDaNave = getPosicaoEmY() + (this.larguraImagem / 2) - 23;
-        Tiro tiro = new Tiro(frenteDaNave, meioDaNave);
+        TiroController tiro = new TiroController(frenteDaNave, meioDaNave);
         this.tiros.add(tiro);
         ativarSuperTiro += 1;
     }
@@ -56,7 +51,7 @@ public class PersonagemController extends ElementoGraficoController{
         if(ativarSuperTiro >= 10){
             int frenteDaNave = getPosicaoEmX() + this.larguraImagem;
             int meioDaNave = getPosicaoEmY() + (this.larguraImagem / 2) - 70;
-            TiroSuper tiroSuper = new TiroSuper(frenteDaNave, meioDaNave);
+            TiroSuperController tiroSuper = new TiroSuperController(frenteDaNave, meioDaNave);
             this.tiroSupers.add(tiroSuper);
             ativarSuperTiro -= 10;
         }
@@ -155,11 +150,11 @@ public class PersonagemController extends ElementoGraficoController{
         this.deslocamentoEmY = deslocamentoEmY;
     }
 
-    public ArrayList<Tiro> getTiros() {
+    public ArrayList<TiroController> getTiros() {
         return this.tiros;
     }
 
-    public void setTiros(ArrayList<Tiro> tiros) {
+    public void setTiros(ArrayList<TiroController> tiros) {
         this.tiros = tiros;
     }
         public int getPontuacao() {
@@ -178,11 +173,11 @@ public class PersonagemController extends ElementoGraficoController{
         this.vidas = vidas;
     }
 
-    public ArrayList<TiroSuper> getTiroSupers() {
+    public ArrayList<TiroSuperController> getTiroSupers() {
         return tiroSupers;
     }
 
-    public void setTiroSupers(ArrayList<TiroSuper> tiroSupers) {
+    public void setTiroSupers(ArrayList<TiroSuperController> tiroSupers) {
         this.tiroSupers = tiroSupers;
     }
 }
