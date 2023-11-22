@@ -1,15 +1,19 @@
 package br.ifpr.jogo.principal;
 
 import javax.swing.JFrame;
-import br.ifpr.jogo.modelo.Fase;
-import br.ifpr.jogo.modelo.FaseUm;
+
+import org.hibernate.Session;
+
+import br.ifpr.jogo.conexao.HibernateUtil;
+import br.ifpr.jogo.controller.FaseController;
+import br.ifpr.jogo.controller.FaseUmController;
 
 public class Principal extends JFrame{
     public static int ALTURA_DA_JANELA = 1080; 
     public static int LARGURA_DA_JANELA = 1920;
 
     public Principal(){
-        Fase fase = new FaseUm();
+        FaseController fase = new FaseUmController();
         super.add(fase);
         setVisible(true);
         setSize(LARGURA_DA_JANELA, ALTURA_DA_JANELA);
@@ -20,6 +24,7 @@ public class Principal extends JFrame{
         setUndecorated(true);
     }
     public static void main(String[] args){
+        Session sessao = HibernateUtil.getSession();
         Principal principal = new Principal();
     }
 }

@@ -1,4 +1,4 @@
-package br.ifpr.jogo.modelo;
+package br.ifpr.jogo.controller;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -8,17 +8,22 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
+
+import br.ifpr.jogo.modelo.Asteroide;
+import br.ifpr.jogo.modelo.Inimigo;
+import br.ifpr.jogo.modelo.Tiro;
+import br.ifpr.jogo.modelo.TiroSuper;
 import br.ifpr.jogo.principal.Principal;
 
-public class FaseUm extends Fase {
+public class FaseUmController extends FaseController {
 
-    public FaseUm() { 
+    public FaseUmController() { 
         super(); 
         ImageIcon carregando = new ImageIcon(getClass().getResource("/fundo.png"));
         fundo = carregando.getImage();
 
-        personagem = new Personagem();
-        personagem.carregar();
+        PersonagemController personagemController = new PersonagemController();
+        personagemController.carregar();
 
         this.inicializaElementosGraficosAdicionais();
 
@@ -56,7 +61,7 @@ public class FaseUm extends Fase {
 
     @Override
     public void desenhaPontuacao(Graphics2D graficos) {
-        String textoPontuacao = "PONTOS: " + personagem.getPontuacao();
+        String textoPontuacao = "PONTOS: " + personagemController.getPontuacao();
         graficos.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 22));
         graficos.setColor(new java.awt.Color(255, 255, 255));
         graficos.drawString(textoPontuacao, 20, 25);
@@ -64,7 +69,7 @@ public class FaseUm extends Fase {
 
     @Override
     public void desenhaVidas(Graphics2D graficos){
-        String textoVidas = "VIDAS: " + personagem.getVidas();
+        String textoVidas = "VIDAS: " + personagemController.getVidas();
         graficos.setFont(new java.awt.Font("Segoe UI", java.awt.Font.PLAIN, 22));
         graficos.setColor(new java.awt.Color(255, 255, 255));
         graficos.drawString(textoVidas, 20, 50);
@@ -86,21 +91,21 @@ public class FaseUm extends Fase {
                 graficos.drawImage(inimigo.getImagem(), inimigo.getPosicaoEmX(), inimigo.getPosicaoEmY(), this);
             }
 
-            ArrayList<Tiro> tiros = personagem.getTiros();
+            ArrayList<Tiro> tiros = personagemController.getTiros();
             for (Tiro tiro : tiros) {
                 tiro.carregar();
                 graficos.drawImage(tiro.getImagem(), tiro.getPosicaoEmX(), tiro.getPosicaoEmY(), this);
             }
             
-            ArrayList<TiroSuper> tirosSupers = personagem.getTiroSupers();
+            ArrayList<TiroSuper> tirosSupers = personagemController.getTiroSupers();
             for (TiroSuper tiroSuper : tirosSupers) {
                 tiroSuper.carregar();
                 graficos.drawImage(tiroSuper.getImagem(), tiroSuper.getPosicaoEmX(), tiroSuper.getPosicaoEmY(), this);
             }
             
            
-            graficos.drawImage(personagem.getImagem(), personagem.getPosicaoEmX(), personagem.getPosicaoEmY(), this);
-            
+            graficos.drawImage(personagemController.getImagem(), personagemController.getPosicaoEmX(), personagemController.getPosicaoEmY(), this);
+    
             // for (Vida vida : vidas) {
             //     vida.carregar();
             //     graficos.drawImage(vida.getImagem(), vida.getPosicaoEmX(), vida.getPosicaoEmY(), this);
@@ -118,17 +123,17 @@ public class FaseUm extends Fase {
 
     @Override
     public void verificarColisoes(){
-        Rectangle formaPersonagem = this.personagem.getRectangle();
+        Rectangle formaPersonagem = this.personagemController.getRectangle();
         for(int i = 0; i < this.inimigos.size(); i++){
             Inimigo inimigo = inimigos.get(i);
             Rectangle formaInimigo = inimigo.getRectangle();
-            if(formaInimigo.intersects(formaPersonagem) && personagem.getVidas() == 0){
-                this.personagem.setEhVisivel(false);
+            if(formaInimigo.intersects(formaPersonagem) && personagemController.getVidas() == 0){
+                this.personagemController.setEhVisivel(false);
                 inimigo.setEhVisivel(false);
                 emJogo = false;
-            }else if(formaInimigo.intersects(formaPersonagem) && personagem.getVidas() > 0){
+            }else if(formaInimigo.intersects(formaPersonagem) && personagemController.getVidas() > 0){
                 inimigo.setEhVisivel(false);
-                personagem.setVidas(personagem.getVidas() - 1);
+                personagemController.setVidas(personagemController.getVidas() - 1);
             }
             // Vida vida = vidas.get(i);
             // Rectangle formaVida = vida.getRectangle();
@@ -136,55 +141,55 @@ public class FaseUm extends Fase {
                 //     personagem.setVidas(personagem.getVidas() + 1);
                 //     vida.setEhVisivel(false);
                 // }
-            ArrayList<Tiro> tiros = this.personagem.getTiros();
+            ArrayList<Tiro> tiros = this.personagemController.getTiros();
             for(int j = 0; j < tiros.size(); j++){
                 Tiro tiro = tiros.get(j);
                 Rectangle formaTiro = tiro.getRectangle();
                 if(formaInimigo.intersects(formaTiro)){
                     inimigo.setEhVisivel(false);
                     tiro.setEhVisivel(false);
-                    int pontuacaoAtual = this.personagem.getPontuacao();
-                    this.personagem.setPontuacao(pontuacaoAtual + PONTOS_POR_INIMIGO);
+                    int pontuacaoAtual = this.personagemController.getPontuacao();
+                    this.personagemController.setPontuacao(pontuacaoAtual + PONTOS_POR_INIMIGO);
                 }
                 
             }
-            ArrayList<TiroSuper> tirosSupers = this.personagem.getTiroSupers();
+            ArrayList<TiroSuper> tirosSupers = this.personagemController.getTiroSupers();
             for(int j = 0; j < tirosSupers.size(); j++){
                 TiroSuper tiroSuper = tirosSupers.get(j);
                 Rectangle formaTiroSuper = tiroSuper.getRectangle();
                 if(formaInimigo.intersects(formaTiroSuper)){
                     inimigo.setEhVisivel(false);
                     //tiroSuper.setEhVisivel(false);
-                    int pontuacaoAtual = this.personagem.getPontuacao();
-                    this.personagem.setPontuacao(pontuacaoAtual + PONTOS_POR_INIMIGO);
+                    int pontuacaoAtual = this.personagemController.getPontuacao();
+                    this.personagemController.setPontuacao(pontuacaoAtual + PONTOS_POR_INIMIGO);
                 }
             }
         }
-        personagem.colisaoParede();
+        personagemController.colisaoParede();
     }
     
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_SPACE)
-            personagem.atirar();
+            personagemController.atirar();
         else if(e.getKeyCode() == KeyEvent.VK_Q)
-            personagem.atirarSuper();
+            personagemController.atirarSuper();
         else
-            personagem.mover(e);
+            personagemController.mover(e);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        personagem.parar(e);
+        personagemController.parar(e);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        personagem.atualizar();
+        personagemController.atualizar();
         for (Asteroide asteroide : this.asteroides) {
             asteroide.atualizar();
         }
-        ArrayList<Tiro> tiros = personagem.getTiros();
+        ArrayList<Tiro> tiros = personagemController.getTiros();
         for (int i = 0; i < tiros.size(); i++) {
             Tiro tiro = tiros.get(i);
             if (tiro.getPosicaoEmX() > LARGURA_DA_JANELA || !tiro.getEhVisivel())
@@ -192,7 +197,7 @@ public class FaseUm extends Fase {
             else
                 tiro.atualizar();
         }
-        ArrayList<TiroSuper> tirosSupers = personagem.getTiroSupers();
+        ArrayList<TiroSuper> tirosSupers = personagemController.getTiroSupers();
         for (int i = 0; i < tirosSupers.size(); i++) {
             TiroSuper tiroSuper = tirosSupers.get(i);
             if (tiroSuper.getPosicaoEmX() > LARGURA_DA_JANELA || !tiroSuper.getEhVisivel())

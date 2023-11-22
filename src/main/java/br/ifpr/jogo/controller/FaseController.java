@@ -1,5 +1,5 @@
 
-package br.ifpr.jogo.modelo;
+package br.ifpr.jogo.controller;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -9,7 +9,11 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public abstract class Fase extends JPanel implements ActionListener, KeyListener {
+import br.ifpr.jogo.modelo.Asteroide;
+import br.ifpr.jogo.modelo.Inimigo;
+import br.ifpr.jogo.modelo.Vida;
+
+public abstract class FaseController extends JPanel implements ActionListener, KeyListener {
     public static final int DELAY = 5;
     public static final int LARGURA_DA_JANELA = 1920;
     public static final int QTDE_DE_INIMIGOS = 50;
@@ -18,7 +22,7 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
     public static final int QTDE_DE_VIDAS = 3;
 
     protected Image fundo;
-    protected Personagem personagem;
+    protected PersonagemController personagemController;
     protected ArrayList<Inimigo> inimigos;
     protected ArrayList<Asteroide> asteroides;
     protected ArrayList<Vida> vidas;
@@ -27,7 +31,7 @@ public abstract class Fase extends JPanel implements ActionListener, KeyListener
 
 
 
-    public Fase() {
+    public FaseController() {
         setFocusable(true);
         setDoubleBuffered(true); 
         addKeyListener(this); 

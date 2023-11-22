@@ -1,0 +1,17 @@
+br\ifpr\jogo\modelo\TiroSuper.class
+br\ifpr\jogo\conexao\HibernateUtil.class
+br\ifpr\jogo\teste\hibernate\TesteHibernate.class
+br\ifpr\jogo\modelo\Inimigo.class
+br\ifpr\jogo\modelo\Jogador.class
+br\ifpr\jogo\teste\servico\ServicoTeste.class
+br\ifpr\jogo\servico\JogadorServico.class
+br\ifpr\jogo\modelo\Fase.class
+br\ifpr\jogo\modelo\Tiro.class
+br\ifpr\jogo\dao\JogadorDaoImpl.class
+br\ifpr\jogo\modelo\ElementoGrafico.class
+br\ifpr\jogo\modelo\Personagem.class
+br\ifpr\jogo\dao\JogadorDao.class
+br\ifpr\jogo\modelo\Asteroide.class
+br\ifpr\jogo\modelo\Vida.class
+br\ifpr\jogo\modelo\FaseUm.class
+br\ifpr\jogo\principal\Principal.class
