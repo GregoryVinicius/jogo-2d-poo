@@ -6,10 +6,10 @@ import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
     private static SessionFactory SESSION_FACTORY;
-    static {
-        try {
+    static{
+        try{
             SESSION_FACTORY = new Configuration().configure().buildSessionFactory();
-        } catch (Throwable ex) {
+        }catch (Throwable ex) {
             System.err.println("Criação Inicial da SessionFactory falhou! " + ex);
             throw new ExceptionInInitializerError(ex);
         }
