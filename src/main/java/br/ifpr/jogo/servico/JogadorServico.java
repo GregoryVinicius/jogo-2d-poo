@@ -2,7 +2,7 @@ package br.ifpr.jogo.servico;
 
 import br.ifpr.jogo.modelo.Jogador;
 import br.ifpr.jogo.dao.JogadorDao;
-import br.ifpr.jogo.dao.impl.JogadorDaoImpl;
+import br.ifpr.jogo.daoimpl.JogadorDaoImpl;
 import java.util.List;
 
 public class JogadorServico {

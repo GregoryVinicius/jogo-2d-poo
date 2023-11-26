@@ -1,4 +1,4 @@
-package br.ifpr.jogo.dao.impl;
+package br.ifpr.jogo.daoimpl;
 
 import java.util.List;
 import br.ifpr.jogo.dao.ElementoGraficoDao;

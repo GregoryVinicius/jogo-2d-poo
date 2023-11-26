@@ -1,36 +1,36 @@
-package br.ifpr.jogo.dao.impl;
+package br.ifpr.jogo.daoimpl;
 
 import java.util.List;
-import br.ifpr.jogo.dao.InimigoDao;
-import br.ifpr.jogo.modelo.Inimigo;
+import br.ifpr.jogo.dao.TiroDao;
+import br.ifpr.jogo.modelo.Tiro;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import br.ifpr.jogo.conexao.HibernateUtil;
 
-public class InimigoDaoImpl implements InimigoDao{
+public class TiroDaoImpl implements TiroDao{
     private Session sessao;
 
-    public InimigoDaoImpl() {
+    public TiroDaoImpl() {
         this.sessao = HibernateUtil.getSession();
     }
 
     @Override
-    public List<Inimigo> buscarTodos() {
-        Query<Inimigo> query = this.sessao.createQuery("from Inimigo", Inimigo.class);
-        List<Inimigo> inimigos = query.getResultList();
-        return inimigos;
+    public List<Tiro> buscarTodos() {
+        Query<Tiro> query = this.sessao.createQuery("from Tiro", Tiro.class);
+        List<Tiro> tiros = query.getResultList();
+        return tiros;
     }
 
     @Override
-    public Inimigo buscarPorId(Integer id) {
-        return this.sessao.find(Inimigo.class, id);
+    public Tiro buscarPorId(Integer id) {
+        return this.sessao.find(Tiro.class, id);
     }
 
     @Override
-    public void inserir(Inimigo inimigo) {
+    public void inserir(Tiro tiro) {
         try {
             sessao.beginTransaction();
-            sessao.persist(inimigo);
+            sessao.persist(tiro);
             sessao.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -38,10 +38,10 @@ public class InimigoDaoImpl implements InimigoDao{
     }
 
     @Override
-    public void atualizar(Inimigo inimigo) {
+    public void atualizar(Tiro tiro) {
         try {
             sessao.beginTransaction();
-            sessao.merge(inimigo);
+            sessao.merge(tiro);
             sessao.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,10 +49,10 @@ public class InimigoDaoImpl implements InimigoDao{
     }
 
     @Override
-    public void excluir(Inimigo inimigo) {
+    public void excluir(Tiro tiro) {
         try {
             sessao.beginTransaction();
-            sessao.remove(inimigo);
+            sessao.remove(tiro);
             sessao.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

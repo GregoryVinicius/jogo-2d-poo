@@ -2,12 +2,8 @@ package br.ifpr.jogo.controller;
 
 import java.awt.Image;
 import java.awt.Rectangle;
-import javax.persistence.Entity;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 
 public abstract class ElementoGraficoController{
-    protected Integer id_elemento_gragico;
     protected int posicaoEmX;
     protected int posicaoEmY;
     protected int larguraImagem;

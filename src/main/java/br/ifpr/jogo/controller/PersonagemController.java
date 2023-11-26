@@ -1,5 +1,6 @@
 package br.ifpr.jogo.controller;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -17,8 +18,6 @@ public class PersonagemController extends ElementoGraficoController{
     private ArrayList<TiroSuperController> tiroSupers;
     private int vidas = 3;
     private int ativarSuperTiro = 0;
-    
-    
 
     public PersonagemController(){
         setPosicaoEmX(POSICAO_INICIAL_EM_X);
@@ -157,7 +156,7 @@ public class PersonagemController extends ElementoGraficoController{
     public void setTiros(ArrayList<TiroController> tiros) {
         this.tiros = tiros;
     }
-        public int getPontuacao() {
+    public int getPontuacao() {
         return this.pontuacao;
     }
 

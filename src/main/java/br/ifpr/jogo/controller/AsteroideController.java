@@ -17,11 +17,10 @@ public class AsteroideController extends ElementoGraficoController{
         super.setPosicaoEmY(yAleatorio);
     }
 
-
-
     public void carregar() {
         ImageIcon carregando = new ImageIcon(getClass().getResource("/asteroide.png"));
-        super.setImagem(carregando.getImage());
+        super.setImagem(
+                carregando.getImage());
     }
 
     @Override

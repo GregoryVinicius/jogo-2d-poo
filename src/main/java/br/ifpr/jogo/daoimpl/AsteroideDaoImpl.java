@@ -1,36 +1,36 @@
-package br.ifpr.jogo.dao.impl;
+package br.ifpr.jogo.daoimpl;
 
 import java.util.List;
-import br.ifpr.jogo.dao.TiroDao;
-import br.ifpr.jogo.modelo.Tiro;
+import br.ifpr.jogo.dao.AsteroideDao;
+import br.ifpr.jogo.modelo.Asteroide;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import br.ifpr.jogo.conexao.HibernateUtil;
 
-public class TiroDaoImpl implements TiroDao{
+public class AsteroideDaoImpl implements AsteroideDao {
     private Session sessao;
 
-    public TiroDaoImpl() {
+    public AsteroideDaoImpl() {
         this.sessao = HibernateUtil.getSession();
     }
 
     @Override
-    public List<Tiro> buscarTodos() {
-        Query<Tiro> query = this.sessao.createQuery("from Tiro", Tiro.class);
-        List<Tiro> tiros = query.getResultList();
-        return tiros;
+    public List<Asteroide> buscarTodos() {
+        Query<Asteroide> query = this.sessao.createQuery("from Asteroide", Asteroide.class);
+        List<Asteroide> asteroide = query.getResultList();
+        return asteroide;
     }
 
     @Override
-    public Tiro buscarPorId(Integer id) {
-        return this.sessao.find(Tiro.class, id);
+    public Asteroide buscarPorId(Integer id) {
+        return this.sessao.find(Asteroide.class, id);
     }
 
     @Override
-    public void inserir(Tiro tiro) {
+    public void inserir(Asteroide asteroide) {
         try {
             sessao.beginTransaction();
-            sessao.persist(tiro);
+            sessao.persist(asteroide);
             sessao.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -38,10 +38,10 @@ public class TiroDaoImpl implements TiroDao{
     }
 
     @Override
-    public void atualizar(Tiro tiro) {
+    public void atualizar(Asteroide asteroide) {
         try {
             sessao.beginTransaction();
-            sessao.merge(tiro);
+            sessao.merge(asteroide);
             sessao.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,10 +49,10 @@ public class TiroDaoImpl implements TiroDao{
     }
 
     @Override
-    public void excluir(Tiro tiro) {
+    public void excluir(Asteroide asteroide) {
         try {
             sessao.beginTransaction();
-            sessao.remove(tiro);
+            sessao.remove(asteroide);
             sessao.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,37 +1,37 @@
-package br.ifpr.jogo.dao.impl;
+package br.ifpr.jogo.daoimpl;
 
 import java.util.List;
 
-import br.ifpr.jogo.dao.JogadorDao;
+import br.ifpr.jogo.dao.TiroSuperDao;
+import br.ifpr.jogo.modelo.TiroSuper;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import br.ifpr.jogo.conexao.HibernateUtil;
-import br.ifpr.jogo.modelo.Jogador;
 
-public class JogadorDaoImpl implements JogadorDao {
+public class TiroSuperDaoImpl implements TiroSuperDao {
     private Session sessao;
 
-    public JogadorDaoImpl() {
+    public TiroSuperDaoImpl() {
         this.sessao = HibernateUtil.getSession();
     }
 
     @Override
-    public List<Jogador> buscarTodos() {
-        Query<Jogador> query = this.sessao.createQuery("from Jogador", Jogador.class);
-        List<Jogador> jogadores = query.getResultList();
-        return jogadores;
+    public List<TiroSuper> buscarTodos() {
+        Query<TiroSuper> query = this.sessao.createQuery("from Jogador", TiroSuper.class);
+        List<TiroSuper> tiroSupers = query.getResultList();
+        return tiroSupers;
     }
 
     @Override
-    public Jogador buscarPorId(Integer id) {
-        return this.sessao.find(Jogador.class, id);
+    public TiroSuper buscarPorId(Integer id) {
+        return this.sessao.find(TiroSuper.class, id);
     }
 
     @Override
-    public void inserir(Jogador jogador) {
+    public void inserir(TiroSuper tiroSuper) {
         try {
             sessao.beginTransaction();
-            sessao.persist(jogador);
+            sessao.persist(tiroSuper);
             sessao.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -39,10 +39,10 @@ public class JogadorDaoImpl implements JogadorDao {
     }
 
     @Override
-    public void atualizar(Jogador jogador) {
+    public void atualizar(TiroSuper tiroSuper) {
         try {
             sessao.beginTransaction();
-            sessao.merge(jogador);
+            sessao.merge(tiroSuper);
             sessao.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -50,10 +50,10 @@ public class JogadorDaoImpl implements JogadorDao {
     }
 
     @Override
-    public void excluir(Jogador jogador) {
+    public void excluir(TiroSuper tiroSuper) {
         try {
             sessao.beginTransaction();
-            sessao.remove(jogador);
+            sessao.remove(tiroSuper);
             sessao.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

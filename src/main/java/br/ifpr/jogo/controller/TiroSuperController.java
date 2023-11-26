@@ -17,7 +17,6 @@ public class TiroSuperController extends ElementoGraficoController{
         this.larguraImagem = this.imagem.getHeight(null);
     }
 
-
     public void atualizar(){
         this.posicaoEmX = this.posicaoEmX + VELOCIDADE;
     }

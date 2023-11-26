@@ -1,5 +1,8 @@
 package br.ifpr.jogo.modelo;
 
+import br.ifpr.jogo.controller.TiroController;
+import br.ifpr.jogo.controller.TiroSuperController;
+
 import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,15 +21,19 @@ public class Personagem{
     @Column(name="id_personagem")
     private Integer idPersonagem;
 
-    @Column(name="deslocamento_em_x")
-    private int deslocamentoEmX;
-    
-    @Column(name="deslocamento_em_y")
-    private int deslocamentoEmY;
-
     @Column(name="pontuação")
     private int pontuacao;
-    
-    @OneToMany(mappedBy = "personagem")
+
+    @OneToMany(mappedBy = "tiros")
     private ArrayList<Tiro> tiros;
+
+    @OneToMany(mappedBy = "tiro_supers")
+    private ArrayList<TiroSuperController> tiroSupers;
+
+    @OneToMany(mappedBy = "vidas")
+    private int vidas = 3;
+
+    @Column(name = "ativar_super")
+    private int ativarSuperTiro = 0;
+
 }

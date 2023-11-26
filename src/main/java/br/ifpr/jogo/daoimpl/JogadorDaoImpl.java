@@ -1,36 +1,37 @@
-package br.ifpr.jogo.dao.impl;
+package br.ifpr.jogo.daoimpl;
 
 import java.util.List;
-import br.ifpr.jogo.dao.PersonagemDao;
-import br.ifpr.jogo.modelo.Personagem;
+
+import br.ifpr.jogo.dao.JogadorDao;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import br.ifpr.jogo.conexao.HibernateUtil;
+import br.ifpr.jogo.modelo.Jogador;
 
-public class PersonagemDaoImpl implements PersonagemDao {
+public class JogadorDaoImpl implements JogadorDao {
     private Session sessao;
 
-    public PersonagemDaoImpl() {
+    public JogadorDaoImpl() {
         this.sessao = HibernateUtil.getSession();
     }
 
     @Override
-    public List<Personagem> buscarTodos() {
-        Query<Personagem> query = this.sessao.createQuery("from Personagem", Personagem.class);
-        List<Personagem> personagems = query.getResultList();
-        return personagems;
+    public List<Jogador> buscarTodos() {
+        Query<Jogador> query = this.sessao.createQuery("from Jogador", Jogador.class);
+        List<Jogador> jogadores = query.getResultList();
+        return jogadores;
     }
 
     @Override
-    public Personagem buscarPorId(Integer id) {
-        return this.sessao.find(Personagem.class, id);
+    public Jogador buscarPorId(Integer id) {
+        return this.sessao.find(Jogador.class, id);
     }
 
     @Override
-    public void inserir(Personagem personagem) {
+    public void inserir(Jogador jogador) {
         try {
             sessao.beginTransaction();
-            sessao.persist(personagem);
+            sessao.persist(jogador);
             sessao.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -38,10 +39,10 @@ public class PersonagemDaoImpl implements PersonagemDao {
     }
 
     @Override
-    public void atualizar(Personagem personagem) {
+    public void atualizar(Jogador jogador) {
         try {
             sessao.beginTransaction();
-            sessao.merge(personagem);
+            sessao.merge(jogador);
             sessao.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,10 +50,10 @@ public class PersonagemDaoImpl implements PersonagemDao {
     }
 
     @Override
-    public void excluir(Personagem personagem) {
+    public void excluir(Jogador jogador) {
         try {
             sessao.beginTransaction();
-            sessao.remove(personagem);
+            sessao.remove(jogador);
             sessao.getTransaction().commit();
         } catch (Exception e) {
             e.printStackTrace();

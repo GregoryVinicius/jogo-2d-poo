@@ -12,7 +12,7 @@ import javax.swing.Timer;
 public abstract class FaseController extends JPanel implements ActionListener, KeyListener {
     public static final int DELAY = 5;
     public static final int LARGURA_DA_JANELA = 1920;
-    public static final int QTDE_DE_INIMIGOS = 50;
+    public static final int QTDE_DE_INIMIGOS = 500;
     public static final int QTDE_DE_ASTEROIDES = 10;
     public static final int PONTOS_POR_INIMIGO = 10;
     protected Image fundo;
@@ -33,8 +33,6 @@ public abstract class FaseController extends JPanel implements ActionListener, K
     public abstract void verificarColisoes();
 
     public abstract void inicializaInimigos();
-
-    // public abstract void inicializaVidas();
     
     public abstract void inicializaElementosGraficosAdicionais();
     

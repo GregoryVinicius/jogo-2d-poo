@@ -9,6 +9,6 @@ public class Inimigo{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id_inimigo")
-    private Integer idinimigo;
+    private Integer idInimigo;
 
 }

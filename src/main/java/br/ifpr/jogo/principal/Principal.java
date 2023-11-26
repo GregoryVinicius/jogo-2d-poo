@@ -24,7 +24,8 @@ public class Principal extends JFrame{
         setUndecorated(true);
     }
     public static void main(String[] args){
-        Session sessao = HibernateUtil.getSession();
         Principal principal = new Principal();
+        Session sessao = HibernateUtil.getSession();
+
     }
 }

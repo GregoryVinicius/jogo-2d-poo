@@ -1,8 +1,5 @@
 package br.ifpr.jogo.controller;
 
-import br.ifpr.jogo.controller.PersonagemController;
-import br.ifpr.jogo.modelo.Personagem;
-
 import javax.swing.*;
 
 public class TiroController extends ElementoGraficoController{
