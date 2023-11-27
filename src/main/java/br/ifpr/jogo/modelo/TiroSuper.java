@@ -1,11 +1,13 @@
 package br.ifpr.jogo.modelo;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.swing.ImageIcon;
 
 @Entity
 @Table(name = "tb_tiro_super")
 public class TiroSuper extends ElementoGrafico{
 
+    @ManyToOne
+    @JoinColumn(name = "fk_personagem")
+    private Personagem personagem;
 }

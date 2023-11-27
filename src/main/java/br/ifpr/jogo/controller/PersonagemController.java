@@ -1,16 +1,14 @@
 package br.ifpr.jogo.controller;
 
-import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
-
 import br.ifpr.jogo.principal.Principal;
 
 public class PersonagemController extends ElementoGraficoController{
-    private static int DESLOCAMENTO = 8;
-    private static int POSICAO_INICIAL_EM_X = 100;
-    private static int POSICAO_INICIAL_EM_Y = 100;
+    private final static int DESLOCAMENTO = 8;
+    private final static int POSICAO_INICIAL_EM_X = 100;
+    private final static int POSICAO_INICIAL_EM_Y = 100;
     private int deslocamentoEmX;
     private int deslocamentoEmY;
     private int pontuacao;
@@ -59,28 +57,16 @@ public class PersonagemController extends ElementoGraficoController{
     public void mover(KeyEvent tecla) {
         int codigo = tecla.getKeyCode();
         switch (codigo) {
-            case KeyEvent.VK_UP:
+            case KeyEvent.VK_UP, KeyEvent.VK_W:
                 this.deslocamentoEmY = -DESLOCAMENTO;
                 break;
-            case KeyEvent.VK_DOWN:
+            case KeyEvent.VK_DOWN, KeyEvent.VK_S:
                 this.deslocamentoEmY = DESLOCAMENTO;
                 break;
-            case KeyEvent.VK_LEFT:
+            case KeyEvent.VK_LEFT, KeyEvent.VK_A:
                 this.deslocamentoEmX = -DESLOCAMENTO;
                 break;
-            case KeyEvent.VK_RIGHT:
-                this.deslocamentoEmX = DESLOCAMENTO;
-                break;
-            case KeyEvent.VK_W:
-                this.deslocamentoEmY = -DESLOCAMENTO;
-                break;
-            case KeyEvent.VK_S:
-                this.deslocamentoEmY = DESLOCAMENTO;
-                break;
-            case KeyEvent.VK_A:
-                this.deslocamentoEmX = -DESLOCAMENTO;
-                break;
-            case KeyEvent.VK_D:
+            case KeyEvent.VK_RIGHT, KeyEvent.VK_D:
                 this.deslocamentoEmX = DESLOCAMENTO;
                 break;
             default:
@@ -91,28 +77,10 @@ public class PersonagemController extends ElementoGraficoController{
     public void parar(KeyEvent tecla) {
         int codigo = tecla.getKeyCode();
         switch (codigo) {
-            case KeyEvent.VK_UP:
+            case KeyEvent.VK_UP, KeyEvent.VK_DOWN, KeyEvent.VK_W, KeyEvent.VK_S:
                 this.deslocamentoEmY = 0;
                 break;
-            case KeyEvent.VK_DOWN:
-                this.deslocamentoEmY = 0;
-                break;
-            case KeyEvent.VK_LEFT:
-                this.deslocamentoEmX = 0;
-                break;
-            case KeyEvent.VK_RIGHT:
-                this.deslocamentoEmX = 0;
-                break;
-            case KeyEvent.VK_W:
-                this.deslocamentoEmY = 0;
-                break;
-            case KeyEvent.VK_S:
-                this.deslocamentoEmY = 0;
-                break;
-            case KeyEvent.VK_D:
-                this.deslocamentoEmX = 0;
-                break;
-            case KeyEvent.VK_A:
+            case KeyEvent.VK_LEFT, KeyEvent.VK_RIGHT, KeyEvent.VK_D, KeyEvent.VK_A:
                 this.deslocamentoEmX = 0;
                 break;
             default:
@@ -131,22 +99,6 @@ public class PersonagemController extends ElementoGraficoController{
         } else if (this.getPosicaoEmY() > Principal.ALTURA_DA_JANELA - this.imagem.getHeight(null) - 60){
             this.setPosicaoEmY(this.getPosicaoEmY() - 8);
         }
-    }
-
-    public int getDeslocamentoEmX() {
-        return this.deslocamentoEmX;
-    }
-
-    public void setDeslocamentoEmX(int deslocamentoEmX) {
-        this.deslocamentoEmX = deslocamentoEmX;
-    }
-
-    public int getDeslocamentoEmY() {
-        return this.deslocamentoEmY;
-    }
-
-    public void setDeslocamentoEmY(int deslocamentoEmY) {
-        this.deslocamentoEmY = deslocamentoEmY;
     }
 
     public ArrayList<TiroController> getTiros() {
