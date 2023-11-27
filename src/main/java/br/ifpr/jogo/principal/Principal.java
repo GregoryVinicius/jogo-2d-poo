@@ -22,6 +22,7 @@ public class Principal extends JFrame{
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
+
     public static void main(String[] args){
         Principal principal = new Principal();
         Session sessao = HibernateUtil.getSession();
