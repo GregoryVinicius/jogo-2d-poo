@@ -1,7 +1,6 @@
 package br.ifpr.jogo.dao;
 
 import java.util.List;
-import br.ifpr.jogo.modelo.Jogador;
 import br.ifpr.jogo.modelo.Personagem;
 
 public interface PersonagemDao {

@@ -1,9 +1,7 @@
 package br.ifpr.jogo.dao;
 
 import java.util.List;
-
 import br.ifpr.jogo.modelo.ElementoGrafico;
-import br.ifpr.jogo.modelo.Jogador;
 
 public interface ElementoGraficoDao{
     public List<ElementoGrafico> buscarTodos();

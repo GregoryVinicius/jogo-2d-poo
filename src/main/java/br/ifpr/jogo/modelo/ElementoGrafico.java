@@ -13,21 +13,47 @@ import javax.persistence.InheritanceType;
 public abstract class ElementoGrafico {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_elemento_gragico")
-    protected Integer id_elemento_gragico;
+    @Column(name = "id_elemento_grafico")
+    protected Integer idElementoGrafico;
 
     @Column(name = "posicao_em_x")
     protected int posicaoEmX;
 
     @Column(name = "posicao_em_y")
     protected int posicaoEmY;
-    
-    @Column(name = "largura_imagem")
-    protected int larguraImagem;
-    
-    @Column(name = "altura_imagem")
-    protected int alturaImagem;
 
     @Column(name = "eh_visivel")
     private boolean ehVisivel = true;
+
+    public Integer getIdElementoGrafico() {
+        return idElementoGrafico;
+    }
+
+    public void setIdElementoGrafico(Integer idElementoGrafico) {
+        this.idElementoGrafico = idElementoGrafico;
+    }
+
+    public int getPosicaoEmX() {
+        return posicaoEmX;
+    }
+
+    public void setPosicaoEmX(int posicaoEmX) {
+        this.posicaoEmX = posicaoEmX;
+    }
+
+    public int getPosicaoEmY() {
+        return posicaoEmY;
+    }
+
+    public void setPosicaoEmY(int posicaoEmY) {
+        this.posicaoEmY = posicaoEmY;
+    }
+
+    public boolean isEhVisivel() {
+        return ehVisivel;
+    }
+
+    public void setEhVisivel(boolean ehVisivel) {
+        this.ehVisivel = ehVisivel;
+    }
 }

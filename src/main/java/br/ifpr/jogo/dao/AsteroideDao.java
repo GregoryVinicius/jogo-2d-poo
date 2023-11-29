@@ -1,9 +1,7 @@
 package br.ifpr.jogo.dao;
 
 import java.util.List;
-
 import br.ifpr.jogo.modelo.Asteroide;
-import br.ifpr.jogo.modelo.Jogador;
 
 public interface AsteroideDao {
     public List<Asteroide> buscarTodos();

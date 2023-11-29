@@ -25,7 +25,6 @@
         <mapping class="br.ifpr.jogo.modelo.Asteroide" />
         <mapping class="br.ifpr.jogo.modelo.Tiro" />
         <mapping class="br.ifpr.jogo.modelo.TiroSuper" />
-        <mapping class="br.ifpr.jogo.modelo.Vida" />
         
     </session-factory>
 </hibernate-configuration>
