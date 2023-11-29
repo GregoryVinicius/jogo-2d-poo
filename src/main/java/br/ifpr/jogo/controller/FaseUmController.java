@@ -8,18 +8,18 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.Timer;
-
-import br.ifpr.jogo.modelo.TiroSuper;
 import br.ifpr.jogo.principal.Principal;
 
 public class FaseUmController extends FaseController {
+
+    PersonagemController personagemController = new PersonagemController();
 
     public FaseUmController() { 
         super(); 
         ImageIcon carregando = new ImageIcon(getClass().getResource("/fundo.png"));
         fundo = carregando.getImage();
 
-        PersonagemController personagemController = new PersonagemController();
+
         personagemController.carregar();
 
         this.inicializaElementosGraficosAdicionais();
@@ -29,7 +29,7 @@ public class FaseUmController extends FaseController {
         timer = new Timer(DELAY, this); 
         timer.start(); 
     }
-    PersonagemController personagemController = new PersonagemController();
+    
     @Override
     public void inicializaInimigos() {
         inimigos = new ArrayList<InimigoController>();

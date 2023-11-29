@@ -26,7 +26,7 @@ public class PersonagemController extends ElementoGraficoController{
     }
 
     public void carregar(){
-        ImageIcon carregando = new ImageIcon(Objects.requireNonNull(getClass().getResource("/personagem.png")));
+        ImageIcon carregando = new ImageIcon(getClass().getResource("/personagem.png"));
         super.imagem = carregando.getImage();
         this.larguraImagem = this.imagem.getWidth(null);
         this.alturaImagem = this.imagem.getHeight(null);
